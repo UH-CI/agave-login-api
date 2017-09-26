@@ -4,6 +4,8 @@ To start use npm install to install all dependencies.
 
 Next replace the consumerKey and consumerSecret with your tenant's client key and secret.  Change the 'uri' to your Agave Tenant URI.  
 
+Add files for your SSL key and cert and replace the filenames in server.js
+
 To start the server:
 <pre>
 node server.js
@@ -11,7 +13,7 @@ node server.js
 
 To use the API you can POST to:
 
-http://localhost:8000/login?username=youuser&password=yourpass
+https://localhost:8000/login?username=youuser&password=yourpass
 
 
-NOTE You also will probably want to change the port to 443 at some point and use a SSL cert so passwords are not in the clear.
+NOTE You also will probably want to change the port to 443 at some point or another custom port.
