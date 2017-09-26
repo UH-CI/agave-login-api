@@ -3,13 +3,25 @@ const express        = require('express');
 const bodyParser     = require('body-parser');
 const app            = express();
 
-
 const consumerKey ="";
 const consumerSecret ="";
 const port = 8000;
 const uri ="agaveauth.its.hawaii.edu";
 var querystring = require('querystring');
 var https = require('https')
+
+var fs = require("fs");
+var hskey = fs.readFileSync('self-signed.key');
+var hscert = fs.readFileSync('self-signed.crt')
+var options = {
+    key: hskey,
+    cert: hscert
+};
+
+var server = https.createServer(options,app)
+//var io = require('socket.io').listen(server);
+// listen for new web clients:
+server.listen(port);
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -58,6 +70,6 @@ app.post('/login', function (req, res)  {
 
 })
 
-app.listen(port, () => {
+/*app.listen(port, () => {
   console.log('We are live on ' + port);
-});
+});*/
