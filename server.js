@@ -1,18 +1,20 @@
 // server.js
 const express        = require('express');
+var cors = require('cors')	
 const bodyParser     = require('body-parser');
 const app            = express();
 
-const consumerKey ="";
-const consumerSecret ="";
+app.use(cors());
+const consumerKey ="ar6syIISmJsmxFtayKzxoo27C44a";
+const consumerSecret ="b70mKZmRDJlsBGgxbgDaBDMNy14a";
 const port = 8000;
 const uri ="agaveauth.its.hawaii.edu";
 var querystring = require('querystring');
 var https = require('https')
 
 var fs = require("fs");
-var hskey = fs.readFileSync('self-signed.key');
-var hscert = fs.readFileSync('self-signed.crt')
+var hskey = fs.readFileSync('ca.key');
+var hscert = fs.readFileSync('ca.crt');
 var options = {
     key: hskey,
     cert: hscert
@@ -57,11 +59,11 @@ app.post('/login', function (req, res)  {
       response.on('data', function (body) {
         console.log('Body: ' + body);
         results=body;
-        res.send(results)
+	res.send(results)
       });
       response.on('error', function(e) {
         console.log('problem with request: ' + e.message);
-        res.send(results)
+        res.send(e)
       });
     });
 
