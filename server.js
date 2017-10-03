@@ -76,7 +76,6 @@ app.post('/login', function (req, res)  {
 
 // POST to refresh and return the tokens and refresh token
 app.post('/refresh', function (req, res)  {
-   if (white_list.indexOf(req.query.username) > -1){
      var data = querystring.stringify({ grant_type: "refresh_token", refresh_token: req.query.refresh_token,
           scope:"PRODUCTION", callbackUrl: "http://localhost:8000" });
   //  console.log(data)
@@ -108,10 +107,6 @@ app.post('/refresh', function (req, res)  {
         });
       });
       request.write(data);
-    }
-    else{
-      res.send("{'error':'Incorrect Credentials.'}")
-    }
 })
 /*app.listen(port, () => {
   console.log('We are live on ' + port);
