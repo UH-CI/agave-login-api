@@ -4,11 +4,14 @@ var cors = require('cors')
 const bodyParser     = require('body-parser');
 const app            = express();
 
-app.use(cors());
-const consumerKey ="ar6syIISmJsmxFtayKzxoo27C44a";
-const consumerSecret ="b70mKZmRDJlsBGgxbgDaBDMNy14a";
+var configFile = require('./config.js');
 
-var white_list = ['seanbc'];
+app.use(cors());
+const consumerKey =configFile.consumer_key;
+const consumerSecret =configFile.consumer_secret;
+
+var white_list = configFile.white_list;
+console.log(white_list)
 const port = 8000;
 const uri ="agaveauth.its.hawaii.edu";
 var querystring = require('querystring');
