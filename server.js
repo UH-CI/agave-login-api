@@ -39,7 +39,7 @@ app.get('/', function (req, res) {
 
 // POST to login and return the tokens and refresh token
 app.post('/login', function (req, res)  {
-   if (white_list.indexOf(req.query.username) > -1){
+   if (white_list.indexOf(req.query.username) > -1 || white_list.indexOf('*') > -1){
      var data = querystring.stringify({ grant_type: "password", username: req.query.username, password: req.query.password,
           scope:"PRODUCTION", callbackUrl: "http://localhost:8000" });
   //  console.log(data)
