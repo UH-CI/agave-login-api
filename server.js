@@ -11,9 +11,9 @@ const consumerKey =configFile.consumer_key;
 const consumerSecret =configFile.consumer_secret;
 
 var white_list = configFile.white_list;
-console.log(white_list)
+
 const port = 8000;
-const uri ="agaveauth.its.hawaii.edu";
+const uri =configFile.tenant_url;
 var querystring = require('querystring');
 var https = require('https')
 

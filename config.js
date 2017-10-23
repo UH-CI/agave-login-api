@@ -1,6 +1,7 @@
-var white_list = ['testuser']
+var whiteList = ['testuser']
 
 var consumerKey ="";
 var consumerSecret ="";
+var tenantUrl = "";
 
-module.exports = { white_list: white_list, consumer_key: consumerKey, consumer_secret: consumerSecret};
+module.exports = { white_list: whiteList, consumer_key: consumerKey, consumer_secret: consumerSecret,tenant_url: tenantUrl};
