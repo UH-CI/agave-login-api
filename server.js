@@ -12,7 +12,7 @@ const consumerSecret =configFile.consumer_secret;
 
 var white_list = configFile.white_list;
 
-const port = 8000;
+const port = configFile.auth_port;
 const uri =configFile.tenant_url;
 var querystring = require('querystring');
 var https = require('https')
