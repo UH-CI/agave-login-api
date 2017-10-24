@@ -2,7 +2,7 @@ This is a nodejs API for doing a password login into an Agave tenant.  This is A
 
 To start use 'npm install' to install all dependencies.
 
-Next replace the consumerKey, consumerSecret, whiteList and tenantUrl with your tenant's settings in the 'config.js' file. If you want to allow all users from the tenant to login without adding them to the list the your white_list var should look like ['\*'] or have the \* added as an item to your list.   
+Next replace the hosts, consumerKey, consumerSecret, whiteList and tenantUrl with your tenant's settings in the 'config.js' file. If you want to allow all users from the tenant to login without adding them to the list the your white_list var should look like ['\*'] or have the \* added as an item to your list.  The hosts cannot be '\*' as the header credentials is not allows to work with '\*' so you must specify a host or list of hosts in the config file.
 
 Add files for your SSL key and cert named 'ca.crt' and 'ca.key'.
 
@@ -13,7 +13,17 @@ node server.js
 
 To use the API you can POST to:
 
-https://localhost:8000/login?username=youuser&password=yourpass
+CURL -k -X POST --user username:passsword https://localhost:8000/login?
 
+For AJAX be sure to use the auth header - for example for $http.post in angularjs:
+<pre>
+var post_data = {};
+var url = 'https://localhost:8000/login';
+var options = {
+    withCredentials: true,
+    headers:{ 'Authorization':  'Basic ' + btoa(username + ":" + password)}
+  }
+$http.post(url,post_data, options).success(function (data, status, headers, config) {//your code})
+</pre>
 
 NOTE You can also modify the port in the 'config.js' file to 443 at some point or another custom port if you desire.
